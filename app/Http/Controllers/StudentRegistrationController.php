@@ -54,7 +54,7 @@ class StudentRegistrationController extends Controller
         // Send OTP via SMS (using an API or service, here we'll mock the sending)
         // Example: SMS API integration (using a mock service here)
         try {
-            $twilio = new Client('AC91e3ed142e4bc8e55a7892fe3dfe9d46', 'dd95b79e254194d43c145ad2bed6129c');
+            $twilio = new Client('', '');
             $twilio->messages->create(
                 '+88' . $student->mobile, // Add country code for Bangladesh
                 [
