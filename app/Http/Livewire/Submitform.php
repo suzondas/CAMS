@@ -29,7 +29,7 @@ class Submitform extends Component
         'ssc_info.gpa' => 'required',
         'ssc_info.ssc_group' => 'required',
         'ssc_info.passing_year' => 'required',
-        'ssc_info.registration' => 'required',
+        'ssc_info.registration' => 'required', 
         'ssc_info.session' => 'required',
         'form.name' => 'required|string|max:100',
         'form.name_bn' => 'required|string|max:100',
