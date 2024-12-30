@@ -43,4 +43,14 @@ class User extends \TCG\Voyager\Models\User
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFullDetailsAttribute()
+    {
+        return $this->name . ' (' . $this->email . ')';
+    }
+
+    public function transaction()
+    {
+        return $this->hasOne(Transactions::class, 'user_id');
+    }
 }

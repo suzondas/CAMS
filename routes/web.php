@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Submitform;
+use App\Http\Livewire\Viewapplication;
+use App\Http\Controllers\StudentRegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+    return redirect(route('voyager.login'));
+});
 
 
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'redirectAfterLogin']], function () {
@@ -23,21 +26,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'redirectAfterLogin']
 });
 
 
-Route::get('/student-logout', function() {
+Route::get('/student-logout', function () {
     Auth::logout();
     return redirect('/');
 });
 
 
-use App\Http\Controllers\StudentRegistrationController;
+/*Register first time*/
 
-Route::get('student/register', [StudentRegistrationController::class, 'showRegistrationForm'])->name('student.register');
+Route::get('student/register', [StudentRegistrationController::class, 'showRegister'])->name('student.register');
 Route::post('student/register', [StudentRegistrationController::class, 'sendOtp'])->name('student.register.verify');
 Route::get('student/otp', [StudentRegistrationController::class, 'showOtpForm'])->name('student.register.otp');
 Route::post('student/verify-otp', [StudentRegistrationController::class, 'verifyOtp'])->name('student.register.verify.otp');
 
+
+/*big form*/
 // Route and controller for the registration form page
-Route::get('/registration-form', function () {
-    return view('students.registration-form');
-})->name('students.registration-form')->middleware('auth');
+Route::get('/registration-form', Submitform::class)->name('students.registration-form')->middleware('auth');
+Route::get('/view-application', Viewapplication::class)->name('students.view-application')->middleware('auth');
 

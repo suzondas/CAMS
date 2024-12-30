@@ -4,7 +4,7 @@
 
     <!-- Display Success Message -->
     @if(session('success'))
-        <div class="card" style="background: gray;color:dodgerblue;font-weight: bold;">
+        <div class="card" style="background: dodgerblue;color:white;font-weight: bold;">
             {{ session('success') }}
         </div>
     @endif
@@ -22,8 +22,13 @@
     <form method="POST" action="{{ route('student.register.verify.otp') }}">
         @csrf
         <div class="form-group">
+            <div class="card"><h3>Student Information</h3>
+                <hr>
+                Name: {{session('name')}} <br>
+                Mobile: {{session('mobile')}}
+            </div>
             <label for="otp">Enter OTP</label>
-            <input type="text" name="otp" id="otp" class="form-control" required>
+            <input type="number" name="otp" id="otp" class="form-control" style="width:150px" required>
         </div>
         <button type="submit" class="btn btn-primary">Verify OTP</button>
     </form>

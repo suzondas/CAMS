@@ -55,8 +55,8 @@
                             <img class="img-responsive pull-left flip logo hidden-xs animated fadeIn" src="{{ Voyager::image($admin_logo_img) }}" alt="Logo Icon">
                         @endif
                         <div class="copy animated fadeIn">
-                            <h1>{{ Voyager::setting('admin.title', 'Voyager') }}</h1>
-                            <p>{{ Voyager::setting('admin.description', __('voyager::login.welcome')) }}</p>
+                            <h1>আনন্দ মোহন কলেজ, ময়মনসিংহ</h1><br>
+                            <span style="font-size: 18px;color:dodgerblue;padding-left:10px;">একাদশ শ্রেনী ভর্তি সিস্টেম</span>
                         </div>
                     </div> <!-- .logo-title-container -->
                 </div>

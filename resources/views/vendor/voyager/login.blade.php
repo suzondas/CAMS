@@ -1,14 +1,44 @@
 @extends('voyager::auth.master')
 
 @section('content')
+    <style>
+        .login-sidebar{
+            overflow-y: scroll !important;
+        }
+        .login-container{
+            top:30% !important;
+            padding:5px;
+        }
+    </style>
     <div class="login-container">
-
-        <p>{{ __('voyager::login.signin_below') }}</p>
+        <h3 style="color:dodgerblue;">একাদশ শ্রেণী ভর্তি সিস্টেমে স্বাগতম</h3>
+        <table class="table table-bordered">
+            <tr>
+                <td>নির্দেশিকা দেখতে
+                </td>
+                <td><a href="#"
+                       style="border:1px solid darkgrey;padding: 5px"
+                       class="">নির্দেশিকা
+                        ডাউনলোড করুন</a></td>
+            </tr>
+            <tr>
+                <td>নতুন ব্যবহারকারী হলে
+                </td>
+                <td>
+                    <a href="{{ route('student.register') }}"
+                       style="border:1px solid darkgrey;padding: 5px"
+                       class="">Registration
+                        করুন</a>
+                </td>
+            </tr>
+        </table>
         @if(session('success'))
             <div class="card" style="color:green;font-weight: bold;">
                 {{ session('success') }}
             </div>
         @endif
+        <h5 style="padding-top: 15px;margin-bottom: 0;padding-bottom: 0;">একাউন্ট থাকলে লগইন করুন</h5>
+
         <form action="{{ route('voyager.login') }}" method="POST">
             {{ csrf_field() }}
             <div class="form-group form-group-default" id="emailGroup">
@@ -28,12 +58,12 @@
                 </div>
             </div>
 
-            <div class="form-group" id="rememberMeGroup">
+            {{--<div class="form-group" id="rememberMeGroup">
                 <div class="controls">
                     <input type="checkbox" name="remember" id="remember" value="1"><label for="remember"
                                                                                           class="remember-me-text">{{ __('voyager::generic.remember_me') }}</label>
                 </div>
-            </div>
+            </div>--}}
 
             <button type="submit" class="btn btn-block login-button">
                 <span class="signingin hidden"><span class="voyager-refresh"></span> {{ __('voyager::login.loggingin') }}...</span>
@@ -43,7 +73,7 @@
         </form>
 
         <div style="clear:both"></div>
-        <br>If you dont have an account then:  <a href="{{ route('student.register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+
 
         @if(!$errors->isEmpty())
             <div class="alert alert-red">
