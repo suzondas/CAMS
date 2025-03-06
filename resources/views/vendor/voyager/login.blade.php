@@ -17,7 +17,7 @@
                 <td>নির্দেশিকা দেখতে
                 </td>
                 <td><a href="#"
-                       style="border:1px solid darkgrey;padding: 5px"
+                       style=""
                        class="">নির্দেশিকা
                         ডাউনলোড করুন</a></td>
             </tr>
@@ -26,7 +26,7 @@
                 </td>
                 <td>
                     <a href="{{ route('student.register') }}"
-                       style="border:1px solid darkgrey;padding: 5px"
+                       style=""
                        class="">Registration
                         করুন</a>
                 </td>

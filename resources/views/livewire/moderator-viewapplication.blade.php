@@ -358,24 +358,48 @@
                         </div>
                     </td>
                 </tr>
-
                 @if($form['approved']!=1)
                     <tr style="background: grey;color:navajowhite;font-weight: bold;">
                         <td colspan="3">
-                            <h2>Your application is not approved yet.</h2>
+                            <div class="row container-fluid">
+                                <div class="col-md-12 h3 text-center">Approval</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">Roll: <input class="approval form-control" name="hsc_roll"
+                                                                   wire:model="hsc_roll"
+                                                                   type="text"/></div>
+                                <div class="col-md-3">
+                                    Section: <select class="approval form-control" name="hsc_section"
+                                                     wire:model="hsc_section">
+                                        <option>Select</option>
+                                        <option value="KA">KA</option>
+                                        <option value="KHA">KHA</option>
+                                        <option value="GA">GA</option>
+                                        <option value="GHA">GHA</option>
+                                    </select>
+                                </div>
+                                <style>
+                                    .accept {
+                                        color: #FFF;
+                                        background: #44CC44;
+                                        padding: 15px 20px;
+                                        box-shadow: 0 4px 0 0 #2EA62E;
+                                    }
+
+                                    .accept:hover {
+                                        background: #6FE76F;
+                                        box-shadow: 0 4px 0 0 #7ED37E;
+                                    }
+                                </style>
+                                <div class="col-md-3">
+                                    <button class="approval accept" wire:click="approve()">Approve</button>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @else
                     <tr>
-                        <td colspan="3" style="padding-top:60px;text-align: center;">
-                            <div class="col-md-6">---------------------------<br>Signature of Guardian</div>
-                            <div class="col-md-6">---------------------------<br>Signature of Student</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="3" style="padding-top:80px;text-align: center;border:none !important;">
-                            <div class="col-md-6">---------------------------<br>Signature of Co-ordinator</div>
-                            <div class="col-md-6">---------------------------<br>Signature of Principle</div>
+                        <td colspan="3"><h2 style="color:green; text-align: center;">Application has been approved!</h2>
                         </td>
                     </tr>
                 @endif
@@ -387,12 +411,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Select all input, select, and textarea elements
-            const formElements = document.querySelectorAll('input, select, textarea');
+            const formElements = document.querySelectorAll('input:not(.approval), select:not(.approval), textarea');
 
             // Disable each element
             formElements.forEach(element => {
                 element.disabled = true;
             });
+
         });
     </script>
 </div>

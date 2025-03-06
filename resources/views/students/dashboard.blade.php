@@ -25,14 +25,21 @@
             </ul>
         </div>
     @endif
-    <div class="bg-primary" style="width:75%;padding:5%">
+    <div class="bg-info" style="width:75%;padding:5%">
 
-        @if($isApproved==1)
-            <h4>Your Application is Approved. Download your application<br>
+        @if($registrationData->approved==1)
+            <h4>Your Application is Approved. <br>Download your application and Submit in Admission Office with signatures.<br>
+                <a class="btn btn-success" target="_blank" href="{{route('students.view-application')}}">View your Application</a>
                 <a class="btn btn-success" href="#">Download</a>
             </h4>
-        @elseif($isApproved==0)
-            <h4>Your Application Approval is Pending <br>
+        @elseif($registrationData->approved==0)
+            <h4>Your Application Approval is Pending. <br>
+                Please pay Admission Fee <b>{{$registrationData->transaction->transaction_amount}}</b> Taka in any of the following Banks using
+                Transaction Number: <span style="font-weight: bold;color:red;">{{$registrationData->transaction->transaction_number}}</span> <br>
+                <ul>
+                    <li type="disc">Sonali Bank</li>
+                    <li type="disc">Rupali Bank</li>
+                </ul>
                 <a class="btn btn-success" href="{{route('students.view-application')}}">View your Application</a>
             </h4>
         @else

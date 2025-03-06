@@ -66,7 +66,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label for="board_name">Board Name</label>
-                                <select class="form-control" wire:model="ssc_info.board_name" id="board_name" required>
+                                <select class="form-control" wire:model="ssc_info.board_name" id="board_name" required disabled>
                                     <option value="Dhaka">Dhaka</option>
                                     <option value="Chittagong">Chittagong</option>
                                     <option value="Rajshahi">Rajshahi</option>
@@ -83,20 +83,20 @@
                             <div class="col-md-3">
                                 <label for="ssc_roll">Roll Number</label>
                                 <input type="number" wire:model="ssc_info.roll" id="ssc_roll" placeholder="SSC/Dakhil/Equivalent Roll Number" class="form-control"
-                                       required>
+                                       required  disabled>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="ssc_group">Group</label>
+                                <select class="form-control" wire:model="ssc_info.ssc_group" id="ssc_group" required  disabled>
+                                    <option value="Science">Science</option>
+                                    <option value="Business Studies">Business Studies</option>
+                                    <option value="Humanities">Humanities</option>
+                                </select>
                             </div>
                             <div class="col-md-3">
                                 <label for="gpa">GPA</label>
                                 <input type="text" wire:model="ssc_info.gpa" id="gpa" placeholder="SSC/Dakhil/Equivalent GPA" class="form-control"
                                        required>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="ssc_group">Group</label>
-                                <select class="form-control" wire:model="ssc_info.ssc_group" id="ssc_group" required>
-                                    <option value="Science">Science</option>
-                                    <option value="Business Studies">Business Studies</option>
-                                    <option value="Humanities">Humanities</option>
-                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -378,39 +378,39 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td colspan="3">
-                        <div class="row container-fluid">
-                            <div class="col-md-12 bg-info text-center">Transaction Information</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">Transaction Type
-                                <select wire:model="form.transaction_type" class="form-control">
-                                    <option>Select</option>
-                                    <option value="1">Bank</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4">Name of Bank
-                                <select wire:model="form.bank_name" class="form-control">
-                                    <option>Select</option>
-                                    <option value="1">Sonali Bank</option>
-                                    <option value="2">Rupali Bank</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">Date of Transaction
-                                <input wire:model="form.transaction_date" class="form-control" type="date"/>
-                            </div>
-                            <div class="col-md-4">Transaction Number
-                                <input wire:model="form.transaction_number" class="form-control" type="text"/>
-                            </div>
-                            <div class="col-md-4">Transaction Amount
-                                <input wire:model="form.transaction_amount" class="form-control" type="text"/>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                {{--<tr>--}}
+                    {{--<td colspan="3">--}}
+                        {{--<div class="row container-fluid">--}}
+                            {{--<div class="col-md-12 bg-info text-center">Transaction Information</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-4">Transaction Type--}}
+                                {{--<select wire:model="form.transaction_type" class="form-control">--}}
+                                    {{--<option>Select</option>--}}
+                                    {{--<option value="1">Bank</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-4">Name of Bank--}}
+                                {{--<select wire:model="form.bank_name" class="form-control">--}}
+                                    {{--<option>Select</option>--}}
+                                    {{--<option value="1">Sonali Bank</option>--}}
+                                    {{--<option value="2">Rupali Bank</option>--}}
+                                {{--</select>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="row">--}}
+                            {{--<div class="col-md-4">Date of Transaction--}}
+                                {{--<input wire:model="form.transaction_date" class="form-control" type="date"/>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-4">Transaction Number--}}
+                                {{--<input wire:model="form.transaction_number" class="form-control" type="text"/>--}}
+                            {{--</div>--}}
+                            {{--<div class="col-md-4">Transaction Amount--}}
+                                {{--<input wire:model="form.transaction_amount" class="form-control" type="text"/>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</td>--}}
+                {{--</tr>--}}
             </table>
             <div class="bg-info text-center">
                 <button type="submit" class="btn btn-animate btn-warning">Submit</button>

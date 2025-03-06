@@ -15,8 +15,21 @@ class RegistrationForm extends Model
         'present_post_office', 'present_post_code', 'present_district', 'present_thana', 'permanent_vill',
         'permanent_post_office', 'permanent_post_code', 'permanent_district', 'permanent_thana', 'es_4', 'es_5', 'es_6', 'es_7',
          'esif', 'quota', 'dob', 'brn','transaction_number',
-        'gender', 'religion','user_id','approved'
+        'gender', 'religion','user_id','approved','hsc_roll','hsc_section'
     ];
 
     public $timestamps = true;
+
+    public function transaction(){
+        return $this->hasOne(Transactions::class,'user_id','user_id');
+    }
+
+    public function ssc_info(){
+        return $this->hasOneThrough(
+            StudentsSscInfo::class,
+            User::class,
+            'id', 'mobile','user_id','email'
+        );
+
+    }
 }

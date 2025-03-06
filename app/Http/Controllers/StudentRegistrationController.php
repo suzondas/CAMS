@@ -30,7 +30,7 @@ class StudentRegistrationController extends Controller
             'board_name' => 'required|string',
             'ssc_group' => 'required|string',
             'roll' => 'required',
-            'hsc_group' => 'hsc_group',
+            'hsc_group' => 'required',
 //            'registration_number' => 'required|string',
             'mobile' => 'required|digits:11|unique:users,email',
             'password' => 'required|string|min:6|confirmed',

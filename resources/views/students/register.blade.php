@@ -1,4 +1,9 @@
 <link rel="stylesheet" href="{{ voyager_asset('css/app.css') }}">
+<style>
+    label {
+        color: black !important;
+    }
+</style>
 <div class="container">
     <div class="bg-info" id="main-container"
          style="margin-bottom: 10px;display: flex; justify-content: space-between; align-items: center; padding: 5px; flex-wrap: wrap;">
@@ -34,9 +39,9 @@
             </ul>
         </div>
     @endif
-    <form class="col-md-4" method="POST" action="{{ route('student.register.verify') }}">
+    <form class="" method="POST" action="{{ route('student.register.verify') }}">
         @csrf
-        <div class="form-group">
+        <div class="form-group col-md-3">
             <label for="board_name">SSC/Dakhil/Equivalent Board</label>
             <select class="form-control" name="board_name" id="board_name">
                 <option value="Dhaka">Dhaka</option>
@@ -52,7 +57,7 @@
                 <option value="Technical">Technical</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-3">
             <label for="ssc_group">SSC/Dakhil/Equivalent Group</label>
             <select class="form-control" name="ssc_group" id="ssc_group">
                 <option value="Science">Science</option>
@@ -60,14 +65,15 @@
                 <option value="Humanities">Humanities</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-3">
             <label for="roll">SSC/Dakhil/Equivalent Exam Roll</label>
-            <input type="number" name="roll" id="roll" placeholder="SSC/Dakhil/Equivalent Roll Number" class="form-control"
+            <input type="number" name="roll" id="roll" placeholder="SSC/Dakhil/Equivalent Roll Number"
+                   class="form-control"
                    required>
         </div>
-        <div class="form-group">
-            <label for="ssc_group">HSC Group</label>
-            <select class="form-control" name="ssc_group" id="hsc_group">
+        <div class="form-group col-md-3">
+            <label for="hsc_group">HSC Group</label>
+            <select class="form-control" name="hsc_group" id="hsc_group">
                 <option value="Science">Science</option>
                 <option value="Business Studies">Business Studies</option>
                 <option value="Humanities">Humanities</option>
@@ -77,13 +83,13 @@
         {{--<label for="registration_number">Registration Number</label>--}}
         {{--<input type="text" name="registration"  placeholder="Registration Number"  id="registration_number" class="form-control" required>--}}
         {{--</div>--}}
-        <div class="form-group">
-            <label for="mobile">Mobile Number (11 Digit. Example- 01712345678)</label>
+        <div class="form-group col-md-3">
+            <label for="mobile">Mobile Number</label>
             {{--<br>--}}
             {{--**This mobile number used in HSC admission system--}}
-            <input type="number" name="mobile" id="mobile" class="form-control" placeholder="Mobile Number" required>
+            <input type="number" name="mobile" id="mobile" class="form-control" placeholder="01xxxxxxxxx" required><br>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-3">
             <label for="password">Password (Minimum Length 6)</label>
             <div class="input-group">
                 <input type="password" name="password" id="password" placeholder="Password" class="form-control"
@@ -94,7 +100,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-md-3">
             <label for="password_confirmation">Retype Password</label>
             <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Retype Password"
                    class="form-control" required>
@@ -103,8 +109,10 @@
         <div id="passwordError" class="text-danger" style="display: none;">
             Passwords do not match!
         </div>
-
-        <button type="submit" class="btn btn-primary">Send OTP</button>
+        <div class="form-group col-md-3">
+            <br>
+            <button type="submit" style="" class="form-control btn btn-primary">Send OTP</button>
+        </div>
     </form>
 </div>
 <script type="text/javascript">

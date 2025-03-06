@@ -261,7 +261,7 @@
                     </div>
                 </td>
             </tr>
-            <tr>
+            {{--<tr>
                 <td colspan="3">
                     <div class="row container">
                         <div class="col-md-12 bg-info text-center">Transaction Information</div>
@@ -291,7 +291,7 @@
                         </div>
                     </div>
                 </td>
-            </tr>
+            </tr>--}}
         </table>
     </form>
 </div>

@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Submitform;
 use App\Http\Livewire\Viewapplication;
 use App\Http\Controllers\StudentRegistrationController;
-
+use App\Http\Controllers\ModeratorController;
+use App\Http\Controllers\PaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,4 +46,10 @@ Route::post('student/verify-otp', [StudentRegistrationController::class, 'verify
 // Route and controller for the registration form page
 Route::get('/registration-form', Submitform::class)->name('students.registration-form')->middleware('auth');
 Route::get('/view-application', Viewapplication::class)->name('students.view-application')->middleware('auth');
+Route::get('/view-student/{id}', Viewapplication::class)->name('students.view-student')->middleware('auth');
 
+Route::get('/moderator', [ModeratorController::class, 'index'])->name('moderator.index')->middleware('web');
+
+Route::resource('transactions', TransactionController::class);
+
+Route::post('/payment/process', [PaymentController::class, 'process'])->name('payment.process');

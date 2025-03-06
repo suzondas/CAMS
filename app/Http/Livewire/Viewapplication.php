@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 use App\Models\StudentsSscInfo;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,12 @@ class Viewapplication extends Component
 {
     use WithFileUploads;
     use HasProfilePhoto;
-
+    public $suggested_roll = 0;
+    public $hsc_roll;
+    public $hsc_section;
+    public $reg_id;
+    public $student_id;
+    public $studentView = false;
     public $photo;
     public $form;
     public $ssc_info;
@@ -36,19 +42,48 @@ class Viewapplication extends Component
         $this->permanent_district = $this->form["permanent_district"];
     }
 
-
-    public function mount()
+    public function suggested_roll($hsc_group)
     {
-        $reg_data = RegistrationForm::where('user_id', Auth::id())->first();
-        if(!$reg_data){
-            return $this->redirectRoute('students.registration-form');
+        $lastHscRoll = RegistrationForm::whereHas('ssc_info', function ($query) use ($hsc_group) {
+            $query->where('hsc_group', $hsc_group);
+        })->orderBy('id', 'desc')->value('hsc_roll');
+        return intval($lastHscRoll) + 1;
+    }
+
+    public function mount($id = null)
+    {
+        if ($id) {
+            $this->studentView = true;
+            $this->student_id = $id;
+            $reg_data = RegistrationForm::with('transaction')->where('user_id', $id)->first();
+            $this->reg_id = $reg_data->id;
+            $user_data = User::find($id);
+            $this->ssc_info = StudentsSscInfo::where(['mobile' => $user_data->email])->first();
+            $this->hsc_roll = $this->suggested_roll($this->ssc_info->hsc_group);
+            $this->form = $reg_data->toArray();
+//            dd($this->suggested_roll);
+        } else {
+            $reg_data = RegistrationForm::with('transaction')->where('user_id', Auth::id())->first();
+            if (!$reg_data) {
+                return $this->redirectRoute('students.registration-form');
+            }
+            $this->form = $reg_data->toArray();
+            $this->ssc_info = StudentsSscInfo::where(['mobile' => Auth::user()->email])->first();
         }
-        $this->form = $reg_data->toArray();
-        $this->ssc_info = StudentsSscInfo::where(['mobile' => Auth::user()->email])->first();
     }
 
     public function render()
     {
-        return view('livewire.viewapplication');
+        return view($this->studentView ? 'livewire.moderator-viewapplication' : 'livewire.viewapplication');
+    }
+
+    public function approve()
+    {
+        try {
+            RegistrationForm::find($this->reg_id)->update(['hsc_roll' => $this->hsc_roll, 'hsc_section' => $this->hsc_section, 'approved' => 1]);
+            return redirect()->route('students.view-student', $this->student_id);
+        } catch (\Exception $exception) {
+            dd($exception);
+        }
     }
 }
